@@ -7,11 +7,6 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-// type Handler struct {
-// 	path string;
-// 	handlerFunc func(http.ResponseWriter, *http.Request);
-// }
-
 func NewServer(dbpool *pgxpool.Pool) http.Handler {
 	mux := http.NewServeMux()
 

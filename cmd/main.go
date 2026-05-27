@@ -36,6 +36,17 @@ func main() {
 	}
 	defer dbpool.Close()
 
+	createTable := `
+		CREATE TABLE IF NOT EXISTS urls (
+			original TEXT NOT NULL,
+			short TEXT PRIMARY KEY
+		);`
+
+	_, err = dbpool.Exec(ctx, createTable)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	server := internal.NewServer(dbpool)
 
 	log.Fatal(http.ListenAndServe(":"+port, server))
